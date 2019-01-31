@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SearchLocations</string>
+    <string name="error_technical_difficulties">We are having technical difficulties</string>
 </resources>
