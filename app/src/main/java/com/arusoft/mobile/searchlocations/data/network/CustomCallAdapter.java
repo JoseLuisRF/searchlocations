@@ -14,9 +14,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 
-/**
- * An Adapter that adapts retrofit's Call object custom call interface
- */
 class CustomCallAdapter<R, E> implements Call {
 
     private final retrofit2.Call<R> call;
