@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.arusoft.mobile.searchlocations"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def dependencies = rootProject.ext.appDependencies
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.core:core-ktx:1.1.0-alpha03'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
+
+    implementation appDependencies.Dagger2
+//    implementation dependencies.DaggerAndroid
+    implementation dependencies.DaggerAndroidSupport
+
+    implementation dependencies.Gson
+    implementation dependencies.Picasso
+    implementation dependencies.Retrofit
+    implementation dependencies.RetrofitConverterGson
+
+
+    implementation appDependencies.androidLifeCycle
+    implementation appDependencies.androidRecyclerView
+
+    kapt dependencies.Dagger2Compiler
+    kapt dependencies.DaggerAndroidProcessor
+    kapt appDependencies.RoomCompiler
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha11'
+
+}
