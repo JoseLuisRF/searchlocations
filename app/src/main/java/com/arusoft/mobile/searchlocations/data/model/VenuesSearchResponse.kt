@@ -8,7 +8,13 @@ data class VenueDTO constructor(
     val id: String,
     val name: String,
     val location: VenueLocationDTO,
-    val categories: List<VenueCategoryDTO>
+    val categories: List<VenueCategoryDTO>,
+    val delivery: VenueDeliveryDTO?
+)
+
+data class VenueDeliveryDTO constructor(
+    val id: String,
+    val url: String?
 )
 
 data class VenueLocationDTO constructor(

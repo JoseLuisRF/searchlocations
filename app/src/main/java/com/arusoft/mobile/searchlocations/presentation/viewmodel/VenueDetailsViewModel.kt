@@ -14,20 +14,19 @@ class VenueDetailsViewModel @Inject constructor(val mapper: PresentationModelMap
 
     val markerLocationLiveData = MediatorLiveData<MarkerOptions>()
 
+    val cityCenter: MutableLiveData<MarkerOptions?> = MutableLiveData()
+
     init {
         markerLocationLiveData.addSource(venueDetailsLiveData) { response ->
             response?.let {
-                markerLocationLiveData.postValue(mapper.convertToMarker(it))
+                markerLocationLiveData.value = mapper.convertToMarker(it)
+            }
+        }
+
+        markerLocationLiveData.addSource(cityCenter) { response ->
+            response?.let {
+                markerLocationLiveData.value = it
             }
         }
     }
-
-    fun updateVenueMarkerLocation() {
-        venueDetailsLiveData.value?.let {
-            markerLocationLiveData.postValue(mapper.convertToMarker(it))
-        }
-
-    }
-
-
 }

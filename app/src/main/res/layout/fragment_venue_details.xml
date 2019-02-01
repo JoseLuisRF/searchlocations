@@ -44,15 +44,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category_name_view" />
 
-    <!--<FrameLayout-->
-        <!--android:id="@+id/venue_map"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="215dp"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--android:background="@android:color/darker_gray" />-->
-
     <TextView
         android:id="@+id/venue_city_view"
         android:layout_width="0dp"
@@ -76,5 +67,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/venue_city_view" />
+
+    <Button
+        android:id="@+id/venue_open_website_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_open_website"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

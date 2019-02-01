@@ -13,5 +13,6 @@ data class VenueModel constructor(
     val categoryName: String,
     val formattedAddress: List<String>,
     val address: String,
-    val distance: Int
+    val distance: Int,
+    val url: String
 ) : BaseModel()

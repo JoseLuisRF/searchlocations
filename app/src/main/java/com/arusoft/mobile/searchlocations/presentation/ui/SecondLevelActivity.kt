@@ -9,9 +9,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import com.arusoft.mobile.searchlocations.R
 import com.arusoft.mobile.searchlocations.presentation.viewmodel.VenueDetailsViewModel
+import com.arusoft.mobile.searchlocations.util.CurrentLocation.CURRENT_LATITUDE
+import com.arusoft.mobile.searchlocations.util.CurrentLocation.CURRENT_LONGITUDE
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_second_level.*
@@ -48,7 +53,11 @@ class SecondLevelActivity : DaggerAppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        viewModel.updateVenueMarkerLocation()
+        val cameraPosition =
+            CameraPosition.Builder().target(LatLng(CURRENT_LATITUDE, CURRENT_LONGITUDE))
+                .zoom(VenuesMapFragment.DEFAULT_MAP_ZOOM)
+                .build()
+        mMap?.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
     }
 
     private val markerObserver = Observer<MarkerOptions> { response ->

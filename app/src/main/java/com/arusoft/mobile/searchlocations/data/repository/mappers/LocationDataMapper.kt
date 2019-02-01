@@ -25,10 +25,11 @@ class LocationDataMapper @Inject constructor() {
             city = response.location.city ?: "",
             state = response.location.state ?: "",
             country = response.location.country ?: "",
-            categoryName = response.categories.firstOrNull { it.primary == true }?.name ?: "",
+            categoryName = response.categories.firstOrNull { it.primary }?.name ?: "",
             formattedAddress = response.location.formattedAddress,
             distance = response.location.distance,
-            address = response.location.address ?: ""
+            address = response.location.address ?: "",
+            url = response.delivery?.url ?: ""
         )
 
         if (response.id.isNullOrBlank() ||

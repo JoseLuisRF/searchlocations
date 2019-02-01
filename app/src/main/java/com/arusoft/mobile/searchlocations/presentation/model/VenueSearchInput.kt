@@ -24,7 +24,8 @@ data class VenueUIModel constructor(
     val country: String,
     val categoryName: String,
     val address: String,
-    val formattedAddress: List<String>
+    val formattedAddress: List<String>,
+    val url: String
 ) : BaseViewModel(), Parcelable {
     constructor(source: Parcel) : this(
         source.readString(),
@@ -37,7 +38,8 @@ data class VenueUIModel constructor(
         source.readString(),
         source.readString(),
         source.readString(),
-        source.createStringArrayList()
+        source.createStringArrayList(),
+        source.readString()
     )
 
     override fun describeContents() = 0
@@ -54,6 +56,7 @@ data class VenueUIModel constructor(
         writeString(categoryName)
         writeString(address)
         writeStringList(formattedAddress)
+        writeString(url)
         writeString(status)
         writeInt(if (error) 1 else 0)
     }

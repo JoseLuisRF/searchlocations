@@ -22,7 +22,6 @@ class PresentationModelMapper @Inject constructor(val errorFactory: AppErrorFact
     }
 
     fun convert(model: VenueModel): VenueUIModel {
-
         val uiModel = VenueUIModel(
             id = model.id,
             name = model.name,
@@ -34,7 +33,8 @@ class PresentationModelMapper @Inject constructor(val errorFactory: AppErrorFact
             categoryName = model.categoryName,
             formattedAddress = model.formattedAddress,
             address = model.address,
-            distance = model.distance
+            distance = model.distance,
+            url = model.url
         )
         uiModel.status = model.status
         return uiModel
