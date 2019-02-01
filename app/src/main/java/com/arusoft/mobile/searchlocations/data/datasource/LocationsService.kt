@@ -13,7 +13,8 @@ interface LocationsService {
         @Query("client_id") clientID: String,
         @Query("client_secret") clientSecret: String,
         @Query(value = "ll") ll: String,
-        @Query(value = "v") v: String
+        @Query(value = "v") v: String,
+        @Query(value = "query") query: String
     ): LiveData<ApiResponse<VenuesSearchResponse, VenuesSearchResponse>>
 
 }

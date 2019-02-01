@@ -23,12 +23,17 @@ class UseCaseGetLocations @Inject constructor(
         locationsCloudDataSource.fetchLocationsNearBy(
             SearchLocationRequest(
                 params.latitude,
-                params.longitude
+                params.longitude,
+                params.query
             )
         )
 
     override fun getLoadingObject(): VenuesSearchModel = VenuesSearchModel()
 
 
-    data class Params constructor(val latitude: Double, val longitude: Double)
+    data class Params constructor(
+        val latitude: Double,
+        val longitude: Double,
+        val query: String
+    )
 }

@@ -17,7 +17,20 @@ class LocationDataMapper @Inject constructor() {
     }
 
     fun convert(response: VenueDTO): VenueModel {
-        val model = VenueModel()
+        val model = VenueModel(
+            id = response.id,
+            name = response.name,
+            latitude = response.location.lat,
+            longitude = response.location.lng,
+            city = response.location.city ?: "",
+            state = response.location.state ?: "",
+            country = response.location.country ?: "",
+            categoryName = response.categories.firstOrNull { it.primary == true }?.name ?: "",
+            formattedAddress = response.location.formattedAddress,
+            distance = response.location.distance,
+            address = response.location.address ?: ""
+        )
+
         if (response.id.isNullOrBlank() ||
             response.name.isNullOrBlank()
         ) {

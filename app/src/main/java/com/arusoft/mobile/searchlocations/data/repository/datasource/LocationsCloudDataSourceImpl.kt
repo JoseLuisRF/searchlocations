@@ -25,7 +25,8 @@ class LocationsCloudDataSourceImpl @Inject constructor(
                     ll = request.latlang,
                     clientSecret = "W43ISJ5UYLHDOT4RGYTOTDNF0W2GK5DYXBUA2EGTGZ4T4CAQ",
                     clientID = "S5CDTSDOSWUNVQJ1VDBQLECPQ2RPNANOM5KIJT2HD5VUZUTD",
-                    v = "20190131"
+                    v = "20190131",
+                    query = request.query
                 )
             ) { apiResponse ->
                 if (apiResponse != null && apiResponse.isSuccessful && apiResponse.body != null) {

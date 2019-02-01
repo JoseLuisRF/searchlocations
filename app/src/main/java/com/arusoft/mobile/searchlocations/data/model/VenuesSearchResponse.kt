@@ -12,29 +12,29 @@ data class VenueDTO constructor(
 )
 
 data class VenueLocationDTO constructor(
-    val address: String,
-    val crossStreet: String,
+    val address: String?,
+    val crossStreet: String?,
     val lat: Double,
     val lng: Double,
     val distance: Int,
-    val postalCode: String,
-    val cc: String,
-    val city: String,
-    val state: String,
-    val country: String,
+    val postalCode: String?,
+    val cc: String?,
+    val city: String?,
+    val state: String?,
+    val country: String?,
     val labeledLatLngs: List<VenueLabelLedLatLngsDTO>,
     val formattedAddress: List<String>
 )
 
 data class VenueLabelLedLatLngsDTO constructor(
-    val label: String,
+    val label: String?,
     val lat: Double,
     val lng: Double
 )
 
 data class VenueIconDTO constructor(
-    val prefix: String,
-    val suffix: String
+    val prefix: String?,
+    val suffix: String?
 )
 
 data class VenueCategoryDTO constructor(
