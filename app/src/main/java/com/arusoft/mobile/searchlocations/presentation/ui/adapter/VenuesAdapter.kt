@@ -1,6 +1,7 @@
 package com.arusoft.mobile.searchlocations.presentation.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.arusoft.mobile.searchlocations.R
@@ -26,8 +27,27 @@ class VenuesAdapter constructor(
 
     override fun onBindViewHolder(holder: VenuesViewHolder, position: Int) {
         val venue = data[position]
-        holder.itemView.venue_name.text = venue.name
-        holder.itemView.card_container_view.setOnClickListener {
+        holder.itemView.venue_name?.text = venue.name
+
+        holder.itemView.venue_category?.apply {
+            text = venue.categoryName
+            visibility = if (venue.categoryName.isBlank()) View.GONE else View.VISIBLE
+        }
+
+        holder.itemView.venue_address?.apply {
+            text = venue.address
+            visibility = if (venue.address.isBlank()) View.GONE else View.VISIBLE
+        }
+
+        holder.itemView.venue_distance?.apply {
+            text =
+                if (venue.distance == 0) context.getString(R.string.item_distance_close) else context.getString(
+                    R.string.item_distance,
+                    venue.distance
+                )
+        }
+
+        holder.itemView.card_container_view?.setOnClickListener {
             clickListener.invoke(venue, position)
         }
     }
