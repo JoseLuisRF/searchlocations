@@ -32,7 +32,11 @@
         android:id="@+id/venueDetailsFragment"
         android:name="com.arusoft.mobile.searchlocations.presentation.ui.VenueDetailsFragment"
         android:label="VenueDetailsFragment"
-        tools:layout="@layout/fragment_venue_details_fragment" />
+        tools:layout="@layout/fragment_venue_details" >
+        <argument
+            android:name="venueId"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/venuesMapFragment"
