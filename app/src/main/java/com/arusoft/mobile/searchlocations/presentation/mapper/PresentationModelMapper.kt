@@ -13,7 +13,7 @@ import javax.inject.Inject
 class PresentationModelMapper @Inject constructor(val errorFactory: AppErrorFactory) {
 
     fun convert(model: VenuesSearchModel): VenuesUIModel {
-        val uiModel = VenuesUIModel(model.venues.map { convert(it) })
+        val uiModel = VenuesUIModel(model.venues.map { convert(it) }.let{ venues -> venues.sortedBy { d -> d.distance } })
         if (model.error) {
             uiModel.setError(errorFactory.createErrorMessage(model.errorCode))
         }

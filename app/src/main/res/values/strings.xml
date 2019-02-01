@@ -2,7 +2,7 @@
     <string name="app_name">SearchLocations</string>
     <string name="error_technical_difficulties">We are having technical difficulties</string>
     <string name="search_hint">Type the venue name that you are looking for</string>
-    <string name="item_distance">Distance from you %d</string>
+    <string name="item_distance">It is %d meters away from center</string>
     <string name="item_distance_close">You`re too close</string>
     <string name="button_open_website">Open website</string>
     <string name="city_center_label">City center</string>
