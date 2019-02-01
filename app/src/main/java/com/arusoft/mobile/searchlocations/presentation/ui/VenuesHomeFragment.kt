@@ -73,7 +73,9 @@ class VenuesHomeFragment : DaggerFragment() {
         progress_loader_view?.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
-    private val onItemClickListener: (VenueUIModel, Int) -> Unit = { item, position ->
-        findNavController().navigate(VenuesHomeFragmentDirections.actionLocationsFragmentToVenueDetailsFragment(item.id))
+    private val onItemClickListener: (VenueUIModel, Int) -> Unit = { item, _ ->
+        val action = VenuesHomeFragmentDirections.actionLocationsFragmentToSecondLevelActivity()
+        action.setVenue(item)
+        findNavController().navigate(action)
     }
 }

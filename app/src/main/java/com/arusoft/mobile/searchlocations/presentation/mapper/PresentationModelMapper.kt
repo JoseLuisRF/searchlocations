@@ -5,6 +5,8 @@ import com.arusoft.mobile.searchlocations.domain.model.VenuesSearchModel
 import com.arusoft.mobile.searchlocations.presentation.model.VenueUIModel
 import com.arusoft.mobile.searchlocations.presentation.model.VenuesUIModel
 import com.arusoft.mobile.searchlocations.util.AppErrorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import javax.inject.Inject
 
 
@@ -37,4 +39,9 @@ class PresentationModelMapper @Inject constructor(val errorFactory: AppErrorFact
         uiModel.status = model.status
         return uiModel
     }
+
+    fun convertToMarker(model: VenueUIModel): MarkerOptions = MarkerOptions()
+        .position(LatLng(model.latitude, model.longitude))
+        .title(model.name)
+
 }

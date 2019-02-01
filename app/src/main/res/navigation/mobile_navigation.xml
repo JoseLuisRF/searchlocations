@@ -12,35 +12,42 @@
         tools:layout="@layout/fragment_locations_list">
 
         <action
-            android:id="@+id/action_locationsFragment_to_venueDetailsFragment"
-            app:destination="@id/venueDetailsFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-
-        <action
             android:id="@+id/action_locationsFragment_to_venuesMapFragment"
             app:destination="@id/venuesMapFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/venueDetailsFragment"
-        android:name="com.arusoft.mobile.searchlocations.presentation.ui.VenueDetailsFragment"
-        android:label="VenueDetailsFragment"
-        tools:layout="@layout/fragment_venue_details" >
-        <argument
-            android:name="venueId"
-            app:argType="string" />
+        <action
+            android:id="@+id/action_locationsFragment_to_secondLevelActivity"
+            app:destination="@id/secondLevelActivity"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/venuesMapFragment"
         android:name="com.arusoft.mobile.searchlocations.presentation.ui.VenuesMapFragment"
         android:label="VenuesMapFragment"
-        tools:layout="@layout/fragment_venues_map" />
+        tools:layout="@layout/fragment_venues_map">
+        <action
+            android:id="@+id/action_venuesMapFragment_to_secondLevelActivity"
+            app:destination="@id/secondLevelActivity"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <activity
+        android:id="@+id/secondLevelActivity"
+        android:name="com.arusoft.mobile.searchlocations.presentation.ui.SecondLevelActivity"
+        android:label="SecondLevelActivity">
+        <argument
+            android:name="venue"
+            android:defaultValue="@null"
+            app:argType="com.arusoft.mobile.searchlocations.presentation.model.VenueUIModel"
+            app:nullable="true" />
+    </activity>
 </navigation>

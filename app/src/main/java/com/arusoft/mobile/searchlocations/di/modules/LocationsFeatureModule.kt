@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.arusoft.mobile.searchlocations.di.scopes.ViewModelKey
 import com.arusoft.mobile.searchlocations.presentation.viewmodel.LocationsViewModel
+import com.arusoft.mobile.searchlocations.presentation.viewmodel.VenueDetailsViewModel
 import com.arusoft.mobile.searchlocations.util.AppErrorFactory
 import com.arusoft.mobile.searchlocations.util.AppErrorFactoryImpl
 import com.arusoft.mobile.searchlocations.util.ProvidingViewModelFactory
@@ -24,4 +25,9 @@ abstract class LocationsFeatureModule {
     @IntoMap
     @ViewModelKey(LocationsViewModel::class)
     abstract fun bindLocationsViewModel(viewModel: LocationsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VenueDetailsViewModel::class)
+    abstract fun bindVenueDetailsViewModel(viewModel: VenueDetailsViewModel): ViewModel
 }

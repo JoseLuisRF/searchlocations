@@ -7,23 +7,34 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.arusoft.mobile.searchlocations.R
+import com.arusoft.mobile.searchlocations.presentation.mapper.PresentationModelMapper
 import com.arusoft.mobile.searchlocations.presentation.model.BaseViewModel
 import com.arusoft.mobile.searchlocations.presentation.model.VenuesUIModel
 import com.arusoft.mobile.searchlocations.presentation.viewmodel.LocationsViewModel
+import com.arusoft.mobile.searchlocations.util.CurrentLocation.CURRENT_LATITUDE
+import com.arusoft.mobile.searchlocations.util.CurrentLocation.CURRENT_LONGITUDE
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_venues_map.*
+import javax.inject.Inject
 
-class VenuesMapFragment : DaggerFragment(), OnMapReadyCallback {
+class VenuesMapFragment : DaggerFragment(), OnMapReadyCallback,
+    GoogleMap.OnInfoWindowClickListener {
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var mapper: PresentationModelMapper
 
     private var mMap: GoogleMap? = null
     private lateinit var viewModel: LocationsViewModel
@@ -54,31 +65,54 @@ class VenuesMapFragment : DaggerFragment(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap?) {
         mMap = map
+        mMap?.setOnInfoWindowClickListener(this)
         viewModel.venuesLiveData.observe(requireActivity(), venuesMapObserver)
+    }
+
+    fun showProgressLoader(visible: Boolean = true) {
+        progress_loader_view?.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
     private val venuesMapObserver = Observer<VenuesUIModel> { response ->
         when (response.status) {
             BaseViewModel.LOADING -> {
-//                showLoader()
+                showProgressLoader(true)
             }
             BaseViewModel.SUCCESS -> {
-//                showLoader(false)
+                showProgressLoader(false)
                 mMap?.clear()
                 for (venue in response.venues) {
-                    val venueLocation = LatLng(venue.latitude, venue.longitude)
-                    mMap?.addMarker(
+                    val marker = mMap?.addMarker(
                         MarkerOptions()
-                            .position(venueLocation)
+                            .position(LatLng(venue.latitude, venue.longitude))
                             .title(venue.name)
                     )
+                    marker?.tag = venue.id
                 }
-
-                mMap?.moveCamera(CameraUpdateFactory.newLatLng(LatLng(47.6062, 122.3321)))
+                val cameraPosition =
+                    CameraPosition.Builder().target(LatLng(CURRENT_LATITUDE, CURRENT_LONGITUDE))
+                        .zoom(DEFAULT_MAP_ZOOM)
+                        .build()
+                mMap?.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
             }
             BaseViewModel.ERROR -> {
-//                showLoader(false)
+                showProgressLoader(false)
             }
         }
+    }
+
+    override fun onInfoWindowClick(marker: Marker) {
+        marker.tag?.let { venueId ->
+            viewModel.venuesLiveData.value?.venues?.firstOrNull { it.id == venueId }?.let {
+                val action =
+                    VenuesMapFragmentDirections.actionVenuesMapFragmentToSecondLevelActivity()
+                action.setVenue(it)
+                findNavController().navigate(action)
+            }
+        }
+    }
+
+    companion object {
+        const val DEFAULT_MAP_ZOOM = 17f
     }
 }
