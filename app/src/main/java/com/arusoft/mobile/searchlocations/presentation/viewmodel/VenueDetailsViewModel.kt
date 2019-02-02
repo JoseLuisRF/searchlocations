@@ -8,12 +8,11 @@ import com.arusoft.mobile.searchlocations.presentation.model.VenueUIModel
 import com.google.android.gms.maps.model.MarkerOptions
 import javax.inject.Inject
 
-class VenueDetailsViewModel @Inject constructor(val mapper: PresentationModelMapper) : ViewModel() {
-
+class VenueDetailsViewModel @Inject constructor(
+    private val mapper: PresentationModelMapper
+) : ViewModel() {
     val venueDetailsLiveData: MutableLiveData<VenueUIModel?> = MutableLiveData()
-
     val markerLocationLiveData = MediatorLiveData<MarkerOptions>()
-
     val cityCenter: MutableLiveData<MarkerOptions?> = MutableLiveData()
 
     init {

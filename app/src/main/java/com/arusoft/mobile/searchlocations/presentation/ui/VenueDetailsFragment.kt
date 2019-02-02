@@ -22,10 +22,10 @@ import kotlinx.android.synthetic.main.fragment_venue_details.*
 import javax.inject.Inject
 
 class VenueDetailsFragment : DaggerFragment() {
-
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: VenueDetailsViewModel
+    private lateinit var safeArguments: SecondLevelActivityArgs
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -36,8 +36,7 @@ class VenueDetailsFragment : DaggerFragment() {
 
     override fun onStart() {
         super.onStart()
-
-        val safeArguments = SecondLevelActivityArgs.fromBundle(requireActivity().intent.extras)
+        safeArguments = SecondLevelActivityArgs.fromBundle(requireActivity().intent.extras)
         viewModel.venueDetailsLiveData.postValue(safeArguments.venue)
     }
 
@@ -51,10 +50,9 @@ class VenueDetailsFragment : DaggerFragment() {
         if (response != null) {
             when (response.status) {
                 BaseViewModel.LOADING -> {
-//                showLoader()
+                    //TODO: Display progress loader
                 }
                 BaseViewModel.SUCCESS -> {
-//                showLoader(false)
                     name_view?.text = response.name
                     category_name_view?.text = response.categoryName
                     venue_address_view?.text = response.address
@@ -82,16 +80,13 @@ class VenueDetailsFragment : DaggerFragment() {
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                             .title(getString(R.string.city_center_label))
                     )
-
                 }
                 BaseViewModel.ERROR -> {
-//                showLoader(false)
+                    //TODO: Display error message
                 }
             }
         } else {
             //TODO: Show error message
         }
     }
-
-
 }

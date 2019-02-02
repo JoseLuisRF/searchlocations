@@ -1,5 +1,6 @@
 package com.arusoft.mobile.searchlocations.data.repository.mappers
 
+import com.arusoft.mobile.searchlocations.data.database.entities.VenueEntity
 import com.arusoft.mobile.searchlocations.data.model.VenuesSearchResponse
 import com.arusoft.mobile.searchlocations.data.model.VenueDTO
 import com.arusoft.mobile.searchlocations.domain.model.BaseModel
@@ -8,7 +9,7 @@ import com.arusoft.mobile.searchlocations.domain.model.VenuesSearchModel
 import com.arusoft.mobile.searchlocations.util.ErrorConstants.PARSING_ERROR
 import javax.inject.Inject
 
-class LocationDataMapper @Inject constructor() {
+class VenuesDataMapper @Inject constructor() {
 
     fun convert(response: VenuesSearchResponse): VenuesSearchModel {
         val model = VenuesSearchModel(response.response.venues.map { convert(it) })
@@ -43,6 +44,20 @@ class LocationDataMapper @Inject constructor() {
         return model
     }
 
+    fun convertToEntity(model: VenueModel): VenueEntity = VenueEntity(
+        id = model.id,
+        name = model.name,
+        latitude = model.latitude,
+        longitude = model.longitude,
+        city = model.city,
+        state = model.state,
+        country = model.country,
+        categoryName = model.categoryName,
+        address = model.address,
+        distance = model.distance,
+        url = model.url
+    )
+
     /**
      * Creates an error Model from a model type
      *
@@ -64,4 +79,17 @@ class LocationDataMapper @Inject constructor() {
         return model
     }
 
+}
+
+/**
+ * Shallow copy of base class [BaseModel]
+ *
+ * @param [BaseModel] base class
+ * @return [T] sub class
+ */
+fun <T : BaseModel> T.baseCopy(base: BaseModel): T {
+    status = base.status
+    error = base.error
+    errorCode = base.errorCode
+    return this
 }

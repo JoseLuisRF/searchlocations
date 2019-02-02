@@ -2,10 +2,10 @@ package com.arusoft.mobile.searchlocations.data.repository.datasource
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.arusoft.mobile.searchlocations.data.datasource.LocationsCloudDataSource
-import com.arusoft.mobile.searchlocations.data.datasource.LocationsService
+import com.arusoft.mobile.searchlocations.data.api.datasource.LocationsCloudDataSource
+import com.arusoft.mobile.searchlocations.data.api.LocationsService
 import com.arusoft.mobile.searchlocations.data.model.SearchLocationRequest
-import com.arusoft.mobile.searchlocations.data.repository.mappers.LocationDataMapper
+import com.arusoft.mobile.searchlocations.data.repository.mappers.VenuesDataMapper
 import com.arusoft.mobile.searchlocations.domain.model.VenuesSearchModel
 import com.arusoft.mobile.searchlocations.util.ErrorConstants.TECHNICAL_DIFFICULTIES_EXCEPTION
 import com.arusoft.mobile.searchlocations.util.LiveDataBuilder
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class LocationsCloudDataSourceImpl @Inject constructor(
     val service: LocationsService,
-    val dataMapper: LocationDataMapper,
+    val dataMapper: VenuesDataMapper,
     val networkUtil: NetworkUtil
 ) : LocationsCloudDataSource {
 

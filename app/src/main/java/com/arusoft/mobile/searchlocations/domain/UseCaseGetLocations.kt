@@ -1,7 +1,7 @@
 package com.arusoft.mobile.searchlocations.domain
 
 import androidx.lifecycle.LiveData
-import com.arusoft.mobile.searchlocations.data.datasource.LocationsCloudDataSource
+import com.arusoft.mobile.searchlocations.data.api.datasource.LocationsCloudDataSource
 import com.arusoft.mobile.searchlocations.data.model.SearchLocationRequest
 import com.arusoft.mobile.searchlocations.domain.base.NetworkBoundResource
 import com.arusoft.mobile.searchlocations.domain.model.VenuesSearchModel

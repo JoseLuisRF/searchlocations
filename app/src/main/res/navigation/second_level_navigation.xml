@@ -9,6 +9,12 @@
         android:id="@+id/venueDetailsFragment2"
         android:name="com.arusoft.mobile.searchlocations.presentation.ui.VenueDetailsFragment"
         android:label="VenueDetailsFragment"
-        tools:layout="@layout/fragment_venue_details"/>
+        tools:layout="@layout/fragment_venue_details">
+        <action
+            android:id="@+id/action_venueDetailsFragment2_to_second_level_navigation"
+            app:destination="@id/second_level_navigation"
+            app:popUpTo="@id/second_level_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

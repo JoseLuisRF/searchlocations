@@ -29,10 +29,8 @@ abstract class NetworkBoundResource<ModelType : BaseModel, T> constructor(privat
                     if (shouldFetch(data)) {
                         fetchFromNetwork(dbSource, params)
                     } else {
-                        appExecutors.getDiskExecutor().execute {
-                            result.addSource(dbSource) { newData ->
-                                data?.let { setValue(it) }
-                            }
+                        appExecutors.getMainThreadExecutor().execute {
+                            data?.let { setValue(it) }
                         }
                     }
                 }

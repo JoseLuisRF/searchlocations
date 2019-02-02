@@ -59,6 +59,7 @@ ext {
     IconifyVersion = "2.1.0"
     GuavaVersion = "19.0"
     navigationVersion = "1.0.0-alpha08"
+    room_version = "2.1.0-alpha04"
 
     appDependencies = [
             ConstraintLayout            : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
@@ -114,7 +115,8 @@ ext {
             EspressoCore                : "com.android.support.test.espresso:espresso-core:${espressoCoreVersion}",
             androidRecyclerView         : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
             androidNavigationFragmentKtx: "android.arch.navigation:navigation-fragment-ktx:${navigationVersion}",
-            androidNavigationUiKtx      : "android.arch.navigation:navigation-ui-ktx:${navigationVersion}"
-
+            androidNavigationUiKtx      : "android.arch.navigation:navigation-ui-ktx:${navigationVersion}",
+            androidxRoomRuntime         : "androidx.room:room-runtime:$room_version",
+            androidxRoomCompiler        : "androidx.room:room-compiler:$room_version"
     ]
 }

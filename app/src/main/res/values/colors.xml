@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="dark_white">#bebebe</color>
     <color name="colorCaption">#272525</color>
+    <color name="fav_background">#B5FFFFFF</color>
 </resources>

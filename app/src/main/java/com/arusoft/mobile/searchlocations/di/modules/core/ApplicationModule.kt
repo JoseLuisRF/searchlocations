@@ -2,14 +2,16 @@ package com.arusoft.mobile.searchlocations.di.modules.core
 
 import android.app.Application
 import android.content.Context
-import com.arusoft.mobile.searchlocations.data.datasource.LocationsService
+import androidx.room.Room
+import com.arusoft.mobile.searchlocations.data.api.LocationsService
+import com.arusoft.mobile.searchlocations.data.database.AppDataBase
+import com.arusoft.mobile.searchlocations.data.database.DATABASE_NAME
 import com.arusoft.mobile.searchlocations.data.network.LiveDataCallAdapterFactory
 import com.arusoft.mobile.searchlocations.util.AppExecutors
 import com.arusoft.mobile.searchlocations.util.AppExecutorsImpl
 import com.arusoft.mobile.searchlocations.util.NetworkUtil
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import okhttp3.HttpUrl
@@ -75,6 +77,10 @@ class ApplicationModule {
 
     @Provides
     fun providesAppExecutors(appExecutors: AppExecutorsImpl): AppExecutors = appExecutors
+
+    @Provides
+    fun providesAppDataBase(context: Context): AppDataBase =
+        Room.databaseBuilder(context, AppDataBase::class.java, DATABASE_NAME).build()
 
     companion object {
         const val MAX_READ_TIME_OUT_SECONDS = 60

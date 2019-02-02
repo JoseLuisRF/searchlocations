@@ -1,4 +1,4 @@
-package com.arusoft.mobile.searchlocations.data.datasource
+package com.arusoft.mobile.searchlocations.data.api.datasource
 
 import androidx.lifecycle.LiveData
 import com.arusoft.mobile.searchlocations.data.model.SearchLocationRequest
