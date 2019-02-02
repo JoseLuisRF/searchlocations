@@ -8,6 +8,6 @@ object ErrorConstants {
 }
 
 object CurrentLocation {
-    const val CURRENT_LATITUDE = 40.7484
-    const val CURRENT_LONGITUDE = -73.9857
+    const val CURRENT_LATITUDE = 47.606339
+    const val CURRENT_LONGITUDE = -122.334892
 }

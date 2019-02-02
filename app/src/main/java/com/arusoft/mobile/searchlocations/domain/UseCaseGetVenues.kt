@@ -9,10 +9,10 @@ import com.arusoft.mobile.searchlocations.util.AppExecutors
 import com.arusoft.mobile.searchlocations.util.LiveDataBuilder
 import javax.inject.Inject
 
-class UseCaseGetLocations @Inject constructor(
+class UseCaseGetVenues @Inject constructor(
     appExecutors: AppExecutors,
-    val locationsCloudDataSource: LocationsCloudDataSource
-) : NetworkBoundResource<VenuesSearchModel, UseCaseGetLocations.Params>(appExecutors) {
+    private val cloudDataSource: LocationsCloudDataSource
+) : NetworkBoundResource<VenuesSearchModel, UseCaseGetVenues.Params>(appExecutors) {
 
     override fun shouldFetch(data: VenuesSearchModel?): Boolean = true
 
@@ -20,7 +20,7 @@ class UseCaseGetLocations @Inject constructor(
         LiveDataBuilder.create(VenuesSearchModel())
 
     override fun createCall(params: Params): LiveData<VenuesSearchModel> =
-        locationsCloudDataSource.fetchLocationsNearBy(
+        cloudDataSource.fetchLocationsNearBy(
             SearchLocationRequest(
                 params.latitude,
                 params.longitude,
