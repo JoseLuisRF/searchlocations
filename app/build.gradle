@@ -48,6 +48,8 @@ dependencies {
     implementation appDependencies.androidNavigationUiKtx
     implementation appDependencies.PlayServicesMaps
     implementation appDependencies.androidxRoomRuntime
+    implementation dependencies.ConstraintLayout
+    implementation dependencies.ConstraintLayoutSolver
 
     kapt dependencies.Dagger2Compiler
     kapt dependencies.DaggerAndroidProcessor

@@ -30,7 +30,7 @@ task clean(type: Delete) {
 
 ext {
     supportLibsVersion = '27.1.1'
-    constraintLayoutVersion = "1.0.2"
+    constraintLayoutVersion = "1.1.3"
     multiDexVersion = "1.0.3"
     archComponetsVersion = '1.1.0'
     playServicesVersion = "16.0.0"
@@ -60,18 +60,18 @@ ext {
     GuavaVersion = "19.0"
     navigationVersion = "1.0.0-alpha08"
     room_version = "2.1.0-alpha04"
+    lifeCycle = "2.0.0"
 
     appDependencies = [
-            ConstraintLayout            : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+            ConstraintLayout            : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            ConstraintLayoutSolver      : "androidx.constraintlayout:constraintlayout-solver:$constraintLayoutVersion",
             MultiDex                    : "com.android.support:multidex:${multiDexVersion}",
             SupportV4                   : "com.android.support:support-v4:${supportLibsVersion}",
             AppCompatV7                 : "com.android.support:appcompat-v7:${supportLibsVersion}",
             CardViewV7                  : "com.android.support:cardview-v7:${supportLibsVersion}",
             CustomTabs                  : "com.android.support:customtabs:${supportLibsVersion}",
             SupportDesign               : "com.android.support:design:${supportLibsVersion}",
-            ArchRoomRuntime             : "android.arch.persistence.room:runtime:${archComponetsVersion}",
-            ArchRoomRxJava2             : "android.arch.persistence.room:rxjava2:${archComponetsVersion}",
-            PlayServicesBase           : "com.google.android.gms:play-services-base:${playServicesVersion}",
+            PlayServicesBase            : "com.google.android.gms:play-services-base:${playServicesVersion}",
             PlayServicesMaps            : "com.google.android.gms:play-services-maps:${playServicesVersion}",
             PlayServicesLocation        : "com.google.android.gms:play-services-location:${playServicesVersion}",
             GcmPlayServices             : "com.google.android.gms:play-services-gcm:${playServicesVersion}",
@@ -98,8 +98,10 @@ ext {
             CoreEngine                  : "coreEngine_release_${coreEngineVersion}",
             RoomCompiler                : "android.arch.persistence.room:compiler:${archComponetsVersion}",
             SafeRoom                    : "com.commonsware.cwac:saferoom:${safeRoomVersion}",
-            androidLifeCycle            : "android.arch.lifecycle:extensions:$archComponetsVersion",
-            androidLifeCycleTest        : "android.arch.core:core-testing:$archComponetsVersion",
+            androidLifeCycle            : "androidx.lifecycle:lifecycle-extensions:${lifeCycle}",
+            androidLifeCycleTest        : "androidx.arch.core:core-testing:${lifeCycle}",
+            lifeCycleCommon             : "androidx.lifecycle:lifecycle-common-java8:${lifeCycle}",
+            lifeCycleCompiler           : "androidx.lifecycle:lifecycle-compiler:${lifeCycle}",
             KotlinStdLib                : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
             AndroidDatabinding          : "com.android.databinding:compiler:${AndroidDataBindingVersion}",
             FirabaseCore                : "com.google.firebase:firebase-core:${FirabaseVersion}",
